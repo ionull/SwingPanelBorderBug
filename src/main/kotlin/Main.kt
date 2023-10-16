@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.awt.SwingPanel
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import javax.swing.JPanel
@@ -18,19 +19,20 @@ import javax.swing.JPanel
 fun App() {
     MaterialTheme {
         Row(Modifier.fillMaxSize()) {
-            Box(Modifier.fillMaxHeight().weight(1f).background(Color.Red))
+            val colorMid = Color(36, 40, 41, 255)
+            Box(Modifier.fillMaxHeight().weight(1f).background(colorMid))
             Box(Modifier.fillMaxHeight().weight(1f)) {
                 SwingPanel(
-                    background = Color.Cyan,
+                    background = colorMid,
                     factory = {
                         JPanel().apply {
-                            background = java.awt.Color.CYAN
+                            background = java.awt.Color(colorMid.toArgb())
                         }
                     },
-                    modifier = Modifier.fillMaxSize().background(Color.Cyan)
+                    modifier = Modifier.fillMaxSize().background(colorMid)
                 )
             }
-            Box(Modifier.fillMaxHeight().weight(1f).background(Color.Green))
+            Box(Modifier.fillMaxHeight().weight(1f).background(colorMid))
         }
     }
 }
